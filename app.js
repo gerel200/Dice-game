@@ -1,6 +1,8 @@
 // togloomiin buh gazar ashiglagdah global hensuu
 // var activePlayer; scores; roundScore; neg morond bugdiig bagtaaj hiij boloh j gsen ali huwisagch ali ni we gdgiig medku
 
+// togloom dussan esehiig hadgalah function
+var isNewGame;
 // ali toglogch shoo shideh we 
 var activePlayer;
 // 2 toglogchiin tsugluulsan onoonuud
@@ -15,6 +17,8 @@ initGame();
 
 // togloomiig shineer ehluuleh
 function initGame(){
+  // togloom ehellee tolowt oruulah
+  isNewGame = true;
 // player turn --> 1player=0, 2player=1
   activePlayer = 0;
 
@@ -55,7 +59,8 @@ diceDom.style.display = "none";
 
 // dice of event listener
 document.querySelector(".btn-roll").addEventListener("click", function () {
-  // 1-6 random number
+  if(isNewGame === true){
+    // 1-6 random number
   var diceNumber = Math.floor(Math.random() * 6) + 1;
 
   // dice img
@@ -72,19 +77,27 @@ document.querySelector(".btn-roll").addEventListener("click", function () {
   } else {
     switchToNextPlayer();
   }
+  }else{
+    alert("Game is over. Please start New Game");
+  }
 });
 
 
 // Hold button event listener
 document.querySelector('.btn-hold').addEventListener('click', function(){
-    // toglochiin onoog tsugluulsan onoon deer nemne
+    if(isNewGame){
+      // toglochiin onoog tsugluulsan onoon deer nemne
     scores[activePlayer] = scores[activePlayer] + roundScore;
 
     // toglogchiig hojson esehiig shalgah
 
     // delgets deer toog n oorchilno
     document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
+
+    // togloch hojson esehiig medeh
     if(scores[activePlayer] >=10){
+        // togloomiig duussan tolowt oruulna
+        isNewGame = false;
         // ylagch gesen textiig nernii orond gargana
         document.getElementById("name-" + activePlayer).textContent = "WINNER!";
         document.querySelector('.player-' + activePlayer + '-panel').classList.add('winner');
@@ -92,6 +105,9 @@ document.querySelector('.btn-hold').addEventListener('click', function(){
     } else{
         switchToNextPlayer();
     } 
+    }  else {
+      alert("Game is over. Please start New Game");
+    }
     });
 
 function switchToNextPlayer(){
