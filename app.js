@@ -95,7 +95,7 @@ document.querySelector('.btn-hold').addEventListener('click', function(){
     document.getElementById('score-' + activePlayer).textContent = scores[activePlayer];
 
     // togloch hojson esehiig medeh
-    if(scores[activePlayer] >=10){
+    if(scores[activePlayer] >=100){
         // togloomiig duussan tolowt oruulna
         isNewGame = false;
         // ylagch gesen textiig nernii orond gargana
