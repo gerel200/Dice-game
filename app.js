@@ -1,14 +1,31 @@
+// togloomiin buh gazar ashiglagdah global hensuu
+// var activePlayer; scores; roundScore; neg morond bugdiig bagtaaj hiij boloh j gsen ali huwisagch ali ni we gdgiig medku
+
+// ali toglogch shoo shideh we 
+var activePlayer;
+// 2 toglogchiin tsugluulsan onoonuud
+var scores;
+// active player tsugluulj bui eeljiin onoo
+var roundScore;
+
+// shoonii zurgiig uzuuleh elementiig DOM oos haij olood end hadgalii
+var diceDom = document.querySelector(".dice");
+// togloomiig ehluulehed zaawal 0 bolson bugdiig duudah heregtei bn
+initGame();
+
+// togloomiig shineer ehluuleh
+function initGame(){
 // player turn --> 1player=0, 2player=1
-var activePlayer = 0;
+  activePlayer = 0;
 
 // player score
-var scores = [0, 0];
+ scores = [0, 0];
 
 // a variable to store the player's current turn score ROUND SCORE
-var roundScore = 0;
+ roundScore = 0;
 
 // A variable to store the result of a dice roll, randomly generated between 1 and 6 DICE ROLL
-var diceNumber = Math.floor(Math.random() * 6) + 1;
+ diceNumber = Math.floor(Math.random() * 6) + 1;
 
 // DOM change
 // <em> bol ontslog bolgoh
@@ -21,8 +38,20 @@ document.getElementById("score-1").textContent = "0";
 document.getElementById("current-0").textContent = "0";
 document.getElementById("current-1").textContent = "0";
 
-var diceDom = document.querySelector(".dice");
+// toglogchdiin neriig butsaaj gargah
+document.getElementById('name-0').textContent = "Player 1";
+document.getElementById('name-1').textContent = "Player 2";
+// winner iin css iig awj hayah
+document.querySelector(".player-0-panel").classList.remove("winner");
+document.querySelector(".player-1-panel").classList.remove("winner");
+
+document.querySelector('.player-0-panel').classList.remove('active');
+document.querySelector('.player-1-panel').classList.remove('active');
+
+document.querySelector('.player-0-panel').classList.add('active');
+
 diceDom.style.display = "none";
+}
 
 // dice of event listener
 document.querySelector(".btn-roll").addEventListener("click", function () {
@@ -82,4 +111,4 @@ function switchToNextPlayer(){
 }
 
 // new game button event listener
-document.querySelector('btn-new').addEventListener
+document.querySelector('.btn-new').addEventListener("click", initGame);
